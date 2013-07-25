@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="CopyFiles">
+	<property name="main-class"  value="ListZip"/>
+	<target name="build">
+		<mkdir dir="deploy" />
+		<delete file="deploy/listZip.jar" />
+		<jar jarfile="deploy/listZip.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+	</target>
+</project>

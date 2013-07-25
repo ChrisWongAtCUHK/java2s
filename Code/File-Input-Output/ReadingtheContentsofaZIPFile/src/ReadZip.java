@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+// http://www.java2s.com/Code/Java/File-Input-Output/ReadingtheContentsofaZIPFile.htm
 public class ReadZip {
 	public static void main(String args[]) {
 		if(args.length < 1){

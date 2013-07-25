@@ -1,31 +1,29 @@
-import java.io.IOException;
-import java.util.Enumeration;
+import zip.list.ListedZip;
+import java.util.ArrayList;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
+// List the content of zip file
 public class ListZip {
 	public static void main(String args[]) {
-		if(args.length < 1){
-			System.out.println("Usage: " + System.getProperty("sun.java.command") + " zipFile");
+		String filename = "";
+		String pattern = "*";
+		
+		if(args.length == 2){
+			filename = args[0];
+			pattern = args[1];
+		} else if(args.length == 1){
+			filename = args[0];
+		} else {
+			System.out.println("Usage: java -jar " + System.getProperty("sun.java.command") + " zipFile [pattern]");
 			return;
 		}
-		try {
-			ZipFile zf = new ZipFile(args[0]);
-			Enumeration<?> entries = zf.entries();
-
-			while (entries.hasMoreElements()) {
-				ZipEntry ze = (ZipEntry) entries.nextElement();
-				System.out.println(ze.getName());
-
-				long size = ze.getSize();
-				if (size > 0) {
-					System.out.println("Length is " + size);
-
-				}
-
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		ListedZip listedZip = new ListedZip(args[0]);
+		ArrayList<ZipEntry> zeList = listedZip.list(pattern);
+		
+		for(ZipEntry ze: zeList){
+			System.out.println(ze.getName());
 		}
+		
 	}
 }
